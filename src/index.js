@@ -10,7 +10,7 @@ let request = (url, needSubDomain, method, data) => {
     'Content-Type': 'application/x-www-form-urlencoded'
   }
   return new Promise((resolve, reject) => {
-    wx.request({
+    tt.request({
       url: _url,
       method: method,
       data: data,
@@ -192,6 +192,9 @@ module.exports = {
   sendTempleMsg: (data) => {
     return request('/template-msg/put', true, 'post', data)
   },
+  payVariableUrl: (url, data) => {
+    return request(url, true, 'post', data)
+  },
   wxpay: (data) => {
     return request('/pay/wx/wxapp', true, 'post', data)
   },
@@ -324,7 +327,7 @@ module.exports = {
     if (!data) {
       data = {}
     }
-    const shopIds = wx.getStorageSync('shopIds')
+    const shopIds = tt.getStorageSync('shopIds')
     if (shopIds) {
       data.shopId = shopIds
     }
@@ -334,7 +337,7 @@ module.exports = {
     if (!data) {
       data = {}
     }
-    const shopIds = wx.getStorageSync('shopIds')
+    const shopIds = tt.getStorageSync('shopIds')
     if (shopIds) {
       data.shopId = shopIds
     }
@@ -425,6 +428,9 @@ module.exports = {
   },
   goodsFavDeleteV2: data => {
     return request('/shop/goods/fav/delete', true, 'post', data)
+  },
+  goodsSeckillGrab: (goodsId, seconds) => {
+    return request('/goods/seckill/grab', false, 'post', { goodsId, seconds })
   },
   coupons: (data) => {
     return request('/discounts/coupons', true, 'get', data)
@@ -799,7 +805,7 @@ module.exports = {
   uploadFile: (token, tempFilePath, expireHours = '') => {
     const uploadUrl = API_BASE_URL + '/' + subDomain + '/dfs/upload/file'
     return new Promise((resolve, reject) => {
-      wx.uploadFile({
+      tt.uploadFile({
         url: uploadUrl,
         filePath: tempFilePath,
         name: 'upfile',
@@ -850,6 +856,9 @@ module.exports = {
   },
   cmsArticles: (data) => {
     return request('/cms/news/list', true, 'post', data)
+  },
+  cmsArticlesV2: (data) => {
+    return request('/cms/news/list/v2', true, 'post', data)
   },
   cmsArticleUsefulLogs: (data) => {
     return request('/cms/news/useful/logs', true, 'post', data)
