@@ -216,6 +216,9 @@ module.exports = {
   ttpay: (data) => {
     return request('/pay/tt/microapp', true, 'post', data)
   },
+  ttEcpay: (data) => {
+    return request('/pay/tt/ecpay', true, 'post', data)
+  },
   payQuery: (token, outTradeId) => {
     return request('/pay/query', true, 'get', { token, outTradeId })
   },
@@ -420,6 +423,9 @@ module.exports = {
     return request('/shop/goods/fav/check', true, 'get', {
       token, goodsId
     })
+  },
+  goodsFavCheckV2: data => {
+    return request('/shop/goods/fav/check', true, 'get', data)
   },
   goodsFavDelete: (token, id = '', goodsId = '') => {
     return request('/shop/goods/fav/delete', true, 'post', {
