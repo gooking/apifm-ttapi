@@ -1419,6 +1419,9 @@ module.exports = {
       type
     })
   },
+  shippingCarInfoAddItemV2: data => {
+    return request('/shopping-cart/add', true, 'post', data)
+  },
   shippingCarInfoModifyNumber: (token, key, number, type = '') => {
     return request('/shopping-cart/modifyNumber', true, 'post', {
       token, key, number, type
