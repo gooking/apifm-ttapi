@@ -1626,6 +1626,12 @@ module.exports = {
   cyTablePayOrder: data => {
     return request('/cyTable/pay-order', true, 'post', data)
   },
+  cyTableInfo: id => {
+    return request('/cyTable/info', true, 'get', { id })
+  },
+  cyTableList: data => {
+    return request('/cyTable/list', true, 'post', data)
+  },
   goodsTimesSchedule: (goodsId = '', propertyChildIds = '', brandId = '', categoryId = '') => {
     return request('/shop/goods/times/schedule', true, 'post', { goodsId, propertyChildIds, brandId, categoryId })
   },
@@ -1829,17 +1835,29 @@ module.exports = {
     return request('/vop/goods/detail', true, 'get', { token, skuId })
   },
   // cps
+  cpsJdGoodsDetail: data => {
+    return request('/cpsJdGoods/detail', true, 'get', data)
+  },
+  cpsJdGoodsShotUrl: (token, skuId) => {
+    return request('/cpsJdGoods/shotUrl', true, 'get', { token, skuId })
+  },
+  cpsJdGoodsShotUrlSite: (token, materialUrl, couponUrl) => {
+    return request('/cpsJdGoods/shotUrl/site', true, 'post', { token, materialUrl, couponUrl })
+  },
   cpsJdGoodsCategory: (parentId, grade) => {
     return request('/cpsJdGoods/category', true, 'get', { parentId, grade })
   },
   cpsJdGoodsSearch: data => {
     return request('/cpsJdGoods/search', true, 'post', data)
   },
-  cpsJdGoodsDetail: data => {
-    return request('/cpsJdGoods/detail', true, 'get', data)
+  cpsJdGoodsShotUrlSite: data => {
+    return request('/cpsJdGoods/shotUrl/site', true, 'post', data)
   },
-  cpsJdGoodsShotUrl: (token, skuId) => {
-    return request('/cpsJdGoods/shotUrl', true, 'get', { token, skuId })
+  cpsJdGoodsSetExt: data => {
+    return request('/cpsJdGoods/ext/set', true, 'post', data)
+  },
+  cpsJdGoodsQueryExt: skuId => {
+    return request('/cpsJdGoods/ext/query', true, 'get', { skuId })
   },
   cpsJdOrders: data => {
     return request('/cpsJdOrder/list', true, 'post', data)
@@ -2202,5 +2220,35 @@ module.exports = {
   },
   wxmpOpenid: code => {
     return request('/user/wxmp/openid', true, 'get', { code })
+  },
+  listingSet: () => {
+    return request('/listingSet/info', true, 'get')
+  },
+  listingMyListing: (token) => {
+    return request('/listingInfo/myListing', true, 'get', { token })
+  },
+  listingSave: data => {
+    return request('/listingInfo/save', true, 'post', data)
+  },
+  listingDetail: (id) => {
+    return request('/listingInfo/detail', true, 'get', { id })
+  },
+  listingCancel: (token, id) => {
+    return request('/listingInfo/cancel', true, 'post', { token, id })
+  },
+  listingSuccess: (token, id) => {
+    return request('/listingInfo/success', true, 'post', { token, id })
+  },
+  listingDelete: (token, id) => {
+    return request('/listingInfo/delete', true, 'post', { token, id })
+  },
+  listingAddGoods: data => {
+    return request('/listingInfo/addGoods', true, 'post', data)
+  },
+  listingRemoveGoods: data => {
+    return request('/listingInfo/removeGoods', true, 'post', data)
+  },
+  listingJoinList: data => {
+    return request('/listingInfo/joinList', true, 'post', data)
   },
 }
