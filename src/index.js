@@ -261,6 +261,9 @@ module.exports = {
   wxpayIPaynow: (data) => {
     return request('/pay/ipaynow/wxapp', true, 'post', data)
   },
+  ccvvPayWxapp: (data) => {
+    return request('/pay/ccvv/wxapp', true, 'post', data)
+  },
   wxpayAirwallex: (data) => {
     return request('/pay/airwallex/wxapp', true, 'post', data)
   },
@@ -847,6 +850,11 @@ module.exports = {
       id
     })
   },
+  regionInfoBatch: (ids) => {
+    return request('/common/region/v2/infoBatch', false, 'get', {
+      ids
+    })
+  },
   regionSearch: data => {
     return request('/common/region/v2/search', false, 'post', data)
   },
@@ -963,6 +971,29 @@ module.exports = {
         name: 'upfile',
         formData: {
           'token': token,
+          expireHours
+        },
+        success(res) {
+          resolve(JSON.parse(res.data))
+        },
+        fail(error) {
+          reject(error)
+        },
+        complete(aaa) {
+          // 加载完成
+        }
+      })
+    })
+  },
+  uploadFileV2: (token, tempFilePath, expireHours = '') => {
+    return new Promise((resolve, reject) => {
+      tt.uploadFile({
+        url: 'https://oss.apifm.com/upload2',
+        filePath: tempFilePath,
+        name: 'upfile',
+        formData: {
+          token,
+          subDomain,
           expireHours
         },
         success(res) {
@@ -1328,6 +1359,12 @@ module.exports = {
   },
   scoreDailyFixedNum: token => {
     return request('/score/dailyFixedNum', true, 'post', { token })
+  },
+  scoreRank: (data) => {
+    return request('/score/rank', true, 'get', data)
+  },
+  scoreRankBydate: (data) => {
+    return request('/score/rankBydate', true, 'get', data)
   },
   voteItems: (data) => {
     return request('/vote/items', true, 'post', data)
