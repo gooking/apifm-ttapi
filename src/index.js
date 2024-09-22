@@ -782,6 +782,9 @@ module.exports = {
       token
     })
   },
+  orderCloseV2: data => {
+    return request('/order/close', true, 'post', data)
+  },
   orderDelete: (token, orderId) => {
     return request('/order/delete', true, 'post', {
       orderId,
@@ -1448,6 +1451,9 @@ module.exports = {
   },
   scoreRankBydate: (data) => {
     return request('/score/rankBydate', true, 'get', data)
+  },
+  scoreMyStatistics: (data) => {
+    return request('/score/myStatistics', true, 'get', data)
   },
   voteItems: (data) => {
     return request('/vote/items', true, 'post', data)
@@ -2150,6 +2156,19 @@ module.exports = {
   },
   jicunGoodsDetail: data => {
     return request('/jicunGoods/detail', true, 'get', data)
+  },
+  // stripe
+  stripeAddCard: function stripeAddCard(data) {
+    return request('/pay/stripe/addCard', true, 'post', data);
+  },
+  stripeCardList: function stripeCardList(token) {
+    return request('/pay/stripe/cardList', true, 'get', { token });
+  },
+  stripeDelCard: function stripeDelCard(token, cardId) {
+    return request('/pay/stripe/deleteCard', true, 'post', { token, cardId });
+  },
+  stripeCharge: function stripeCharge(data) {
+    return request('/pay/stripe/charge', true, 'post', data);
   },
   // ocr
   ocrBusinessLicense: imageUrl => {
