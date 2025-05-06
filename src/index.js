@@ -419,6 +419,9 @@ module.exports = {
   goodsCategoryDetail: (id) => {
     return request('/shop/goods/category/info', true, 'get', { id })
   },
+  goodsCategoryDetailV2: (data) => {
+    return request('/shop/goods/category/info', true, 'get', data)
+  },
   goods: (data) => {
     if (!data) {
       data = {}
@@ -1432,6 +1435,15 @@ module.exports = {
   },
   idcardCheckManualReviewInfo: (token) => {
     return request('/user/idcard/manualReview/info', true, 'get', { token })
+  },
+  userTagList: (data) => {
+    return request('/userTag/list', true, 'post', data)
+  },
+  userTagCertificateQuery: (token) => {
+    return request('/userTag/certificate/query', true, 'get', { token })
+  },
+  userTagCertificate: (data) => {
+    return request('/userTag/certificate', true, 'post', data)
   },
   bindSeller: data => {
     return request('/user/bindSeller', true, 'post', data)
