@@ -1493,6 +1493,18 @@ module.exports = {
   mapAddressToGps: (data) => {
     return request(COMMON_BASE_URL + subDomain + '/map/addressToGps', false, 'post', data)
   },
+  virtualTraderList: (data) => {
+    return request('/virtualTrader/list', true, 'post', data)
+  },
+  virtualTraderDetail: (token, id) => {
+    return request('/virtualTrader/info', true, 'get', { token, id })
+  },
+  virtualTraderBuy: (token, id) => {
+    return request('/virtualTrader/buy', true, 'post', { token, id })
+  },
+  virtualTraderMyBuyLogs: (data) => {
+    return request('/virtualTrader/buy/logs', true, 'post', data)
+  },
   virtualTraderListV2: (data) => {
     return request(COMMON_BASE_URL + subDomain + '/virtualTrader/list', false, 'post', data)
   },
