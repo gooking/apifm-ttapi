@@ -2166,13 +2166,13 @@ module.exports = {
     return request('/userBank/banks', true, 'get')
   },
   userBankInfo: token => {
-    return request('/userBank/info', true, 'get', { token })
+    return request(COMMON_BASE_URL + subDomain + '/userBank/info', false, 'get', { token })
   },
   userBankBind: data => {
-    return request('/userBank/bind', true, 'post', data)
+    return request(COMMON_BASE_URL + subDomain + '/userBank/bind', false, 'post', data)
   },
   userBankUnBind: token => {
-    return request('/userBank/unbind', true, 'post', { token })
+    return request(COMMON_BASE_URL + subDomain + '/userBank/unbind', false, 'post', { token })
   },
   // 京东VOP相关接口
   jdvopGoodsList: data => {
@@ -2993,5 +2993,8 @@ module.exports = {
   },
   fsmRepairUpload: data => {
     return request(COMMON_BASE_URL + subDomain + '/fsmRepair/upload', false, 'post', data)
+  },
+  fsmRepairReturnFactory: (data) => {
+    return request(COMMON_BASE_URL + subDomain + '/fsmRepair/returnFactory', false, 'post', data)
   },
 }
