@@ -724,6 +724,15 @@ module.exports = {
   friendUserDetail: (token, uid) => {
     return request('/user/friend/detail', true, 'get', { token, uid })
   },
+  userImList: data => {
+    return request(COMMON_BASE_URL + subDomain + '/userIm/list', false, 'post', data)
+  },
+  userImSendmessage: (token, uid, content) => {
+    return request(COMMON_BASE_URL + subDomain + '/userIm/sendmessage', false, 'post', { token, uid, content })
+  },
+  userImEmpty: (token, uid) => {
+    return request(COMMON_BASE_URL + subDomain + '/userIm/empty', false, 'post', { token, uid })
+  },
   videoDetail: (videoId) => {
     return request(COMMON_BASE_URL + subDomain + '/media/video/detail', false, 'get', {
       videoId
@@ -1569,13 +1578,13 @@ module.exports = {
     return request('/user/bindSeller', true, 'post', data)
   },
   loginout: (token) => {
-    return request('/user/loginout', true, 'get', { token })
+    return request(COMMON_BASE_URL + subDomain + '/user/loginout', false, 'get', { token })
   },
   userLogedList: (token) => {
     return request('/user/logedUserList', true, 'get', { token })
   },
   userDelete: (token) => {
-    return request('/user/delete', true, 'post', { token })
+    return request(COMMON_BASE_URL + subDomain + '/user/delete', false, 'post', { token })
   },
   dynamicUserCode: (token) => {
     return request(COMMON_BASE_URL + subDomain + '/user/dynamicUserCode', false, 'get', { token })
@@ -1773,7 +1782,7 @@ module.exports = {
     return request(COMMON_BASE_URL + subDomain + '/site/user/dynamic', false, 'get', { type })
   },
   fetchSubDomainByWxappAppid: (appid) => {
-    return request('/subdomain/appid/wxapp', false, 'get', { appid })
+    return request(COMMON_BASE_URL + '/subdomain/appid/wxapp', false, 'get', { appid })
   },
   cmsArticleFavPut: (token, newsId) => {
     return request('/cms/news/fav/add', true, 'post', { token, newsId })
@@ -1837,16 +1846,16 @@ module.exports = {
     })
   },
   growthLogsV2: (data) => {
-    return request(COMMON_BASE_URL + subDomain + '/growthLog/logs', true, 'post', data)
+    return request(COMMON_BASE_URL + subDomain + '/growthLog/logs', false, 'post', data)
   },
   exchangeScoreToGrowthV2: (data) => {
-    return request(COMMON_BASE_URL + subDomain + '/growthLog/exchange', true, 'post', data)
+    return request(COMMON_BASE_URL + subDomain + '/growthLog/exchange', false, 'post', data)
   },
   wxaMpLiveRooms: () => {
-    return request('/wx/live/rooms', true, 'get')
+    return request(COMMON_BASE_URL + subDomain + '/wx/live/rooms', false, 'get')
   },
   wxaMpLiveRoomHisVedios: (roomId) => {
-    return request('/wx/live/his', true, 'get', {
+    return request(COMMON_BASE_URL + subDomain + '/wx/live/his', false, 'get', {
       roomId
     })
   },
