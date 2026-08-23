@@ -2749,7 +2749,7 @@ module.exports = {
     return request('/shopCategory/info', true, 'get', { id })
   },
   contactList: () => {
-    return request('/contact/list', true, 'get')
+    return request(COMMON_BASE_URL + subDomain + '/contact/list', false, 'get')
   },
   distributedLock: (key, seconds) => {
     return request('/distributedLock/lock', true, 'get', { key, seconds })
